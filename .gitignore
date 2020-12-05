@@ -1,3 +1,17 @@
+### Eclipse ###
+.project
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.recommenders
+
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # ignore custom
