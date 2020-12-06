@@ -1,12 +1,13 @@
 import logo from './logo.svg';
 import './App.css';
 
-import Benvenuto from './components/controllo-login/Benvenuto';
+import ControlloLogin from './components/controllo-login/ControlloLogin';
 
 function App() {
   return (
     <div className="App">
-	  <Benvenuto utenteAutenticato={false}/>
+	  <ControlloLogin/>
+      <br/><br/><br/>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
