@@ -1,0 +1,5 @@
+.acceso { background-color: #00FF00; }
+.spento { background-color: #FF0000; }
+
+.visibile { opacity: 1; }
+.nascosto { opacity: 0; }

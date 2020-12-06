@@ -2,11 +2,13 @@ import logo from './logo.svg';
 import './App.css';
 
 import Eventi from './components/Eventi';
+import Interruttore from './components/Interruttore';
 
 function App() {
   return (
     <div className="App">
 	  <Eventi/>
+	  <Interruttore/>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
