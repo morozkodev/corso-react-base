@@ -1,9 +1,12 @@
 import logo from './logo.svg';
 import './App.css';
 
+import Eventi from './components/Eventi';
+
 function App() {
   return (
     <div className="App">
+	  <Eventi/>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
