@@ -30,7 +30,7 @@ class Interruttore extends React.Component {
                 <div>
                     <button onClick={this.modificaCondizione} className={this.state.acceso ? 'acceso' : 'spento'}>{this.state.acceso ? 'Acceso' : 'Spento'}</button>
                 </div>
-                <div  className={this.state.acceso ? 'visibile' : 'nascosto'}>
+                <div  className={`animazione ${this.state.acceso ? 'visibile' : 'nascosto'}`}>
                     <h1>Contenuto interrutore</h1>
                 </div>
             </div>

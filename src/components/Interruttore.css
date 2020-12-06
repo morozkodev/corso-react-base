@@ -1,5 +1,7 @@
 .acceso { background-color: #00FF00; }
 .spento { background-color: #FF0000; }
 
+.animazione { transition: opacity .5s ease-out; } 
+
 .visibile { opacity: 1; }
 .nascosto { opacity: 0; }
