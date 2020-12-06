@@ -12,6 +12,12 @@ local.properties
 .loadpath
 .recommenders
 
+### Idea ###
+.idea/
+
+### Netbeans ###
+nbproject/
+
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # ignore custom
@@ -40,3 +46,4 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+/nbproject/private/
