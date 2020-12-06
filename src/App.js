@@ -1,12 +1,12 @@
 import logo from './logo.svg';
 import './App.css';
 
-import ControlloLogin from './components/controllo-login/ControlloLogin';
+import ControlloCustom from './components/controllo-login/ControlloCustom';
 
 function App() {
   return (
     <div className="App">
-	  <ControlloLogin/>
+	  <ControlloCustom/>
       <br/><br/><br/>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
