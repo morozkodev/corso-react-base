@@ -1,9 +1,12 @@
 import logo from './logo.svg';
 import './App.css';
 
+import Lista from './components/Liste/Lista';
+
 function App() {
   return (
     <div className="App">
+	  <Lista/>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
