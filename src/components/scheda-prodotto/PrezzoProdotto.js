@@ -4,7 +4,7 @@ class PrezzoProdotto extends React.Component {
 
     render() {
         return (
-            <div><span>Prezzo: 35 EURO</span></div>
+            <div><span>Prezzo: {this.props.price} EURO</span></div>
         );
     }
 

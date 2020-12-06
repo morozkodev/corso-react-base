@@ -4,7 +4,7 @@ class DescrizioneProdotto extends React.Component {
 
     render() {
         return (
-            <div>Descrizione</div>
+        <div>{this.props.desc}</div>
         );
     }
 

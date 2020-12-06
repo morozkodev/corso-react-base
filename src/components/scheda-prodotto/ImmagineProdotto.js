@@ -4,7 +4,7 @@ class ImmagineProdotto extends React.Component {
 
     render() {
         return (
-            <div><img src="https://plchldr.co/i/300x250" alt="Nome Prodotto"/></div>
+            <div><img src={this.props.src} alt={this.props.alt}/></div>
         );
     }
 
