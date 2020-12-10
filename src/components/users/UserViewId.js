@@ -16,8 +16,7 @@ class UserViewId extends React.Component {
 	componentDidMount() {
 		console.log('componenteDidMount');
 		axios
-			//.get( `https://jsonplaceholder.typicode.com/users/${this.props.userId}` )
-			.get(`https://jsonplaceholder.typicode.com/users/` + this.props.userId)
+			.get( `https://jsonplaceholder.typicode.com/users/${this.props.userId}` )
 			.then(res => {
 				console.log(res);
 				const user = res.data;
