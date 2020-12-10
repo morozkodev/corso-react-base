@@ -1,6 +1,7 @@
 import React from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { Formik } from 'formik';
+import { schemaUser } from '../common/UserSchema';
 
 class UserAdd extends React.Component {
 	render() {
@@ -9,24 +10,8 @@ class UserAdd extends React.Component {
 				<h1>Aggiungi utente</h1>
 				<Formik
 					initialValues={{ name: '', username: '', email: '' }}
-					validate={
-						(values) => {
-							let errors = {};
-							if (!values.name) {
-								errors.name = 'Required'
-							}
-							if (!values.username) {
-								errors.username = 'Required'
-							}
-							if (!values.email) {
-								errors.email = 'Required'
-                            } else if( !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email) ){
-                                errors.email = 'Email NON valida'
-                            }													
-							return errors;
-						}
-					}
-                   onSubmit = { (values, {setSubmitting}) => {
+				 	validationSchema = {schemaUser}
+                   	onSubmit = { (values, {setSubmitting}) => {
                         console.log('submit form');
 						this.props.onAddUser( values );
                         setSubmitting(false);
