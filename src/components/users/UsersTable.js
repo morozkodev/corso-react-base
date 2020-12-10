@@ -52,17 +52,18 @@ class UsersTable extends React.Component {
                             <th>#</th>
                             <th>Name</th>
                             <th>Username</th>
-							<th colSpan="3"></th>
+							<th colSpan="3">
+				               <Button 
+				                    variant="warning" 
+				                    onClick={ () => this.addUser() }
+				                    >Aggiugi Utente</Button>								
+							</th>
                         </tr>
                     </thead>
                     <tbody>
                         {righe}
                     </tbody>
                 </Table>
-               <Button 
-                    variant="warning" 
-                    onClick={ () => this.addUser() }
-                    >Aggiugi Utente</Button>	
             </section>
         )
     }

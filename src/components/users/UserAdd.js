@@ -28,6 +28,7 @@ class UserAdd extends React.Component {
 					}
                    onSubmit = { (values, {setSubmitting}) => {
                         console.log('submit form');
+						this.props.onAddUser( values );
                         setSubmitting(false);
                         /**/
                     } }

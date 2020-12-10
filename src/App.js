@@ -29,6 +29,7 @@ class App extends React.Component {
 		this.viewList = this.viewList.bind(this);
 		this.saveUser = this.saveUser.bind(this);
 		this.addUser = this.addUser.bind(this);
+		this.saveAddUser = this.saveAddUser.bind(this);
 	}
 
 	componentDidMount() {
@@ -81,6 +82,17 @@ class App extends React.Component {
 		console.log(`App.addUser`);
 		this.setState({ display: displayAdd });
 	}
+	
+	saveAddUser( user ) {
+		console.log(`App.saveAddUser -> ${JSON.stringify(user)}`);
+		axios
+			.post(`https://jsonplaceholder.typicode.com/users`, user )
+			.then(res => {
+				console.log( `saveAddUser -> ${res.status} / ${JSON.stringify(res.data)}` );
+				this.initUsers();
+				this.viewList();
+			});		
+	}	
 
 	render() {
 		let contenuto;
@@ -98,7 +110,7 @@ class App extends React.Component {
 		} else if (this.state.display === displayEdit) {
 			contenuto = <UserEdit user={this.state.currentUser} onViewList={this.viewList} onSaveUser={this.saveUser} />;
 		} else if (this.state.display === displayAdd) {
-			contenuto = <UserAdd onViewList={this.viewList} />;			
+			contenuto = <UserAdd onViewList={this.viewList} onAddUser={this.saveAddUser}/>;			
 		} else {
 			contenuto = '<p>Non supportato</p>'
 		}
