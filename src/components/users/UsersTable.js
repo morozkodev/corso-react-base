@@ -18,6 +18,11 @@ class UsersTable extends React.Component {
         this.props.onEditUser( user );
     }
 
+    addUser() {
+        console.log( `UsersTable.addUser` );
+        this.props.onAddUser();
+    }
+
     render(){
         const righe = (this.props.users.map((user)=>
             <tr key={user.id.toString()}>
@@ -54,6 +59,10 @@ class UsersTable extends React.Component {
                         {righe}
                     </tbody>
                 </Table>
+               <Button 
+                    variant="warning" 
+                    onClick={ () => this.addUser() }
+                    >Aggiugi Utente</Button>	
             </section>
         )
     }
