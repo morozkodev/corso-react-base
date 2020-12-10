@@ -3,9 +3,12 @@ import axios from 'axios';
 import Container from 'react-bootstrap/Container';
 import UsersTable from './components/users/UsersTable';
 import UserView from './components/users/UserView';
+import UserViewId from './components/users/UserViewId';
+
 
 const displayList = 'list';
 const displayView = 'view';
+const displayViewId = 'viewId';
 
 class App extends React.Component {
 
@@ -14,14 +17,16 @@ class App extends React.Component {
     this.state = { 
 		users: [], 
 		currentUser: {},
+		userId: '',
 		display: displayList
 	}
 	this.viewUser = this.viewUser.bind( this );
+	this.viewUserId = this.viewUserId.bind( this );
 	this.viewList = this.viewList.bind( this );
   }
 
   componentDidMount() {
-    console.log( 'componenteDidMount' );
+      console.log( 'componenteDidMount' );
       axios
         .get( 'https://jsonplaceholder.typicode.com/users' )
         .then( res => {
@@ -37,6 +42,11 @@ class App extends React.Component {
 	this.setState({ currentUser: user, display: displayView });
   }
 
+  viewUserId( id ) {
+	console.log( `App.viewUserId -> ${id}` );
+	this.setState({ userId: id, display: displayViewId });
+  }
+
   viewList() {
 	console.log( `App.viewList` );
 	this.setState({ currentUser: {}, display: displayList });
@@ -45,9 +55,14 @@ class App extends React.Component {
   render(){
 	let contenuto;
 	if ( this.state.display === displayList ) {
-		contenuto = <UsersTable users={this.state.users} onViewUser={this.viewUser}/>;
+		contenuto = <UsersTable 
+						users={this.state.users} 
+						onViewUser={this.viewUser}
+						onViewUserId={this.viewUserId}/>;
 	} else if ( this.state.display === displayView ) {
 		contenuto = <UserView user={this.state.currentUser} onViewList={this.viewList}/>;
+	} else if ( this.state.display === displayViewId ) {
+		contenuto = <UserViewId userId={this.state.userId} onViewList={this.viewList}/>;		
 	} else {
 		contenuto = '<p>Non supportato</p>'
 	}

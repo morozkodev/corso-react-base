@@ -8,6 +8,11 @@ class UsersTable extends React.Component {
         this.props.onViewUser( user );
     }
 
+    viewUserId( id ) {
+        console.log( `UsersTable.viewUserId -> ${id}` );
+        this.props.onViewUserId( id );
+    }
+
     render(){
         const righe = (this.props.users.map((user)=>
             <tr key={user.id.toString()}>
@@ -18,6 +23,10 @@ class UsersTable extends React.Component {
                     variant="success" 
                     onClick={ () => this.viewUser(user) }
                     >Dettaglio</Button> </td>
+                <td><Button 
+                    variant="success" 
+                    onClick={ () => this.viewUserId(user.id) }
+                    >Vedi ID</Button> </td>
             </tr>
         ));
         return (
@@ -29,6 +38,7 @@ class UsersTable extends React.Component {
                             <th>#</th>
                             <th>Name</th>
                             <th>Username</th>
+							<th colSpan="2"></th>
                         </tr>
                     </thead>
                     <tbody>

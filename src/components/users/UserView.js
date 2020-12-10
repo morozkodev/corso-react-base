@@ -1,5 +1,6 @@
 import React from 'react';
 import {Card, Button} from 'react-bootstrap';
+import UserViewDetail from './UserViewDetail';
 
 class UserView extends React.Component{
     render(){
@@ -10,16 +11,7 @@ class UserView extends React.Component{
                 <Card style={{ width: '18rem' }}>
                     <Card.Title>{user.name}</Card.Title>
                     <Card.Text>
-                        <strong>Username: </strong>
-						<span>{user.username}</span> <br/>
-						<strong>Indirizzo: </strong>
-                        <span>{user.address.street}</span>, 
-                        <span>{user.address.suite}</span>, 
-                        <span>{user.address.city}</span>, 
-                        <span>{user.address.zipcode}</span>, 
-                        <br />
-                        <strong>Email: </strong><span>{user.email}</span><br />
-                        <strong>Telefono: </strong><span>{user.phone}</span><br />
+                        <UserViewDetail user={user}/>
 						<Button 
 		                    variant="success" 
 		                    onClick={ () => this.props.onViewList() }
