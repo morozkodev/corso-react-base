@@ -26,7 +26,10 @@ class UserView extends React.Component {
 				console.log(res);
 				const user = res.data;
 				this.setState( { user } );
-			});
+			}).catch( (error) => {
+                console.log( `errore caricamento utente  -> ${this.state.userId} -> ${JSON.stringify(error)}` );
+				this.props.history.push( `/errore/${error.response.status}` );
+            })
 	}
 
     render(){

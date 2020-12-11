@@ -5,6 +5,7 @@ import UsersTable from './components/users/UsersTable';
 import UserView from './components/users/UserView';
 import UserEdit from './components/users/UserEdit';
 import UserAdd from './components/users/UserAdd';
+import PaginaErrore from './components/common/PaginaErrore';
 
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'; 
 
@@ -40,6 +41,7 @@ class App extends React.Component {
 				<Container>
 					<h1>Pannello di controllo</h1>
 	                <Switch>
+	                    <Route exact path="/errore/:httpCode"  component={PaginaErrore}/>
 						<Route exact path="/add" component={UserAdd} />
 						<Route extact path="/view/:userId" component={UserView}/>
 						<Route extact path="/edit/:userId" component={UserEdit}/>
