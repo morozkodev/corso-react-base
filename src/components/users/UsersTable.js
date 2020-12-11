@@ -8,11 +8,23 @@ class UsersTable extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = { users: [] };
+		this.initUsers = this.initUsers.bind( this );
 	}
 
 	componentDidMount() {
 		console.log('component did mount');
-		this.setState({ users: this.props.users });
+		this.initUsers();
+	}
+
+	initUsers() {
+		console.log( "refresh users" );
+		axios
+			.get('https://jsonplaceholder.typicode.com/users')
+			.then(res => {
+				console.log(res);
+				const users = res.data;
+				this.setState({ users: users });
+			});		
 	}
 
 	cancellaUtente(userId) {
@@ -48,7 +60,7 @@ class UsersTable extends React.Component {
 							<th>Name</th>
 							<th>Username</th>
 							<th colSpan="2"><Link to={`/add`}>Aggiugi Utente</Link></th>
-							<th><Button onClick={this.props.onRefresh}>Aggiorna</Button></th>
+							<th><Button onClick={this.onRefresh}>Aggiorna</Button></th>
 						</tr>
 					</thead>
 					<tbody>

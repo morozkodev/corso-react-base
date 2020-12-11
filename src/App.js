@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import { Container } from 'react-bootstrap';
 import UsersTable from './components/users/UsersTable';
 import UserView from './components/users/UserView';
@@ -11,28 +10,9 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 class App extends React.Component {
 
-	constructor(props) {
-		super(props);
-		this.state = {
-			users: []
-		}
-		this.initUsers = this.initUsers.bind( this );
-	}
-
 	componentDidMount() {
 		console.log('componenteDidMount');
 		this.initUsers();
-	}
-
-	initUsers() {
-		console.log( "refresh users" );
-		axios
-			.get('https://jsonplaceholder.typicode.com/users')
-			.then(res => {
-				console.log(res);
-				const users = res.data;
-				this.setState({ users: users });
-			});		
 	}
 
 	render() {
@@ -45,9 +25,7 @@ class App extends React.Component {
 						<Route exact path="/add" component={UserAdd} />
 						<Route extact path="/view/:userId" component={UserView}/>
 						<Route extact path="/edit/:userId" component={UserEdit}/>
-	                    <Route exact path="/">
-	                        <UsersTable users={this.state.users} onRefresh={this.initUsers}/>
-	                    </Route>
+	                    <Route exact path="/" component={UsersTable}/>
 						<Route exact path="*">
 							<PaginaErrore httpCode='404'/>
 						</Route>					
