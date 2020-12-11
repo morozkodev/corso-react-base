@@ -81,7 +81,7 @@ class UsersTable extends React.Component {
 								<th>Name</th>
 								<th>Username</th>
 								<th><Link to="/add">Add new</Link> </th>
-								<th colSpan="2"><Button onClick={this.refresh}>Refresh</Button> </th>
+								<th colSpan="2"><Button onClick={this.initUsers}>Refresh</Button> </th>
 							</tr>
 						</thead>
 						<tbody>
