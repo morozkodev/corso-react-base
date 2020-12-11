@@ -1,10 +1,11 @@
 import React from 'react';
+import {Card} from 'react-bootstrap';
 
 class UserViewDetail extends React.Component{
     render(){
         const user = this.props.user;
         return(
-				<div>
+				<Card.Text>
                         <strong>Username: </strong>
 						<span>{user.username}</span> <br/>
 						<strong>Indirizzo: </strong>
@@ -15,7 +16,7 @@ class UserViewDetail extends React.Component{
                         <br />
                         <strong>Email: </strong><span>{user.email}</span><br />
                         <strong>Telefono: </strong><span>{user.phone}</span><br />
-                </div>
+                </Card.Text>
         )
     }
 }

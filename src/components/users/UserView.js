@@ -35,9 +35,7 @@ class UserView extends React.Component {
 		if ( user ) {
 			contenuto = <Card style={{ width: '18rem' }}>
 				<Card.Title>{user.name}</Card.Title>
-				<Card.Text>
-					<UserViewDetail user={user} />
-				</Card.Text>
+				<UserViewDetail user={user} />
 			</Card>
 		}
         return(
