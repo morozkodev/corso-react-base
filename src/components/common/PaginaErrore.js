@@ -5,7 +5,12 @@ class PaginaErrore extends React.Component {
 	constructor( props ) {
 		super( props );
 		console.log( `PaginaErrore props -> ${JSON.stringify(this.props)}` )
-		this.state = { httpCode: this.props.match.params.httpCode };
+		if ( this.props.httpCode ) {
+			this.state = { httpCode: this.props.httpCode };	
+		} else {
+			this.state = { httpCode: this.props.match.params.httpCode };
+		}
+		
 	}
 	render() {
 		let messageError = 'Ci dispiace, non siamo riusciti a gestire la tua richiesta';

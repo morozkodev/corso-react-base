@@ -45,9 +45,12 @@ class App extends React.Component {
 						<Route exact path="/add" component={UserAdd} />
 						<Route extact path="/view/:userId" component={UserView}/>
 						<Route extact path="/edit/:userId" component={UserEdit}/>
-	                    <Route extact path="/">
+	                    <Route exact path="/">
 	                        <UsersTable users={this.state.users} onRefresh={this.initUsers}/>
-	                    </Route>						
+	                    </Route>
+						<Route exact path="*">
+							<PaginaErrore httpCode='404'/>
+						</Route>					
 	                </Switch>
 				</Container>
 			</Router>
