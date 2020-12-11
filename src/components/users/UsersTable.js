@@ -8,8 +8,8 @@ class UsersTable extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = { users: [] };
-		 console.log('constructor');
-		this.initUsers = this.initUsers.bind( this );
+		console.log('constructor');
+		this.initUsers = this.initUsers.bind(this);
 	}
 
 	componentDidMount() {
@@ -18,14 +18,27 @@ class UsersTable extends React.Component {
 	}
 
 	initUsers() {
-		console.log( "refresh users" );
-		axios
-			.get('https://jsonplaceholder.typicode.com/users')
+		console.log("refresh users");
+		fetch(`https://jsonplaceholder.typicode.com/users`)
+			.then(response => {
+				console.log(`init user -> step1 -> response}`);
+				return response.json();
+			})
 			.then(res => {
-				console.log(res);
-				const users = res.data;
-				this.setState({ users: users });
-			});		
+				console.log(`init user -> step2 -> ${JSON.stringify(res)}`);
+				const DatiJson = res.map(obj => obj);
+				this.setState({
+					users: DatiJson,
+					loading: false,
+				});
+			})
+			.catch(error => {
+				console.log(error);
+				this.setState({
+					loading: false,
+					error: error
+				});
+			});
 	}
 
 	cancellaUtente(userId) {
