@@ -8,6 +8,7 @@ class UsersTable extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = { users: [] };
+		 console.log('constructor');
 		this.initUsers = this.initUsers.bind( this );
 	}
 
@@ -40,7 +41,7 @@ class UsersTable extends React.Component {
 	}
 
 	render() {
-		const righe = (this.props.users.map((user) =>
+		const righe = (this.state.users.map((user) =>
 			<tr key={user.id.toString()}>
 				<td>{user.id}</td>
 				<td>{user.name}</td>
@@ -60,7 +61,7 @@ class UsersTable extends React.Component {
 							<th>Name</th>
 							<th>Username</th>
 							<th colSpan="2"><Link to={`/add`}>Aggiugi Utente</Link></th>
-							<th><Button onClick={this.onRefresh}>Aggiorna</Button></th>
+							<th><Button onClick={this.initUsers}>Aggiorna</Button></th>
 						</tr>
 					</thead>
 					<tbody>
