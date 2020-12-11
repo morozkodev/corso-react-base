@@ -1,6 +1,7 @@
 import React from 'react';
-
 import { ButtonBackToList } from './UserButton';
+
+require('dotenv').config();
 
 class Login extends React.Component{
     constructor(props){
@@ -25,9 +26,12 @@ class Login extends React.Component{
     }
 
     render(){
+		console.log('ENV START');
+		console.log(process.env.REACT_APP_API_KEY);
+		console.log('ENV END');
         return(
             <section>
-                <h1>Login</h1>
+                <h1>Login 1</h1>
                 <button onClick={this.auth}>Login</button>
 				<button onClick={this.test}>Test</button>
 				<br/>
