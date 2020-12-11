@@ -1,14 +1,34 @@
 import React from 'react';
+import axios from 'axios';
 import { Form, Button } from 'react-bootstrap';
-import {handleCommonValidateText, handleCommonValidateEmail} from '../common/ValidateUtil.js'
+import { ButtonBackToList } from './UserButton';
+import { handleCommonValidateText, handleCommonValidateEmail } from '../common/ValidateUtil.js';
 
 export default class UserEdit extends React.Component {
 
 	constructor(props) {
 		super(props);
-		this.state = { user: this.props.user };
+		this.state = { userId: this.props.match.params.userId };
 		this.handleEdit = this.handleEdit.bind(this);
 		this.handleSave = this.handleSave.bind(this);
+	}
+
+	componentDidMount() {
+		console.log(`userId: ${this.state.userId}`);
+		console.log(`pattern: ${JSON.stringify(this.props)}`);
+		const options = {
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json;charset=UTF-8' 
+			}
+		}
+		axios
+			.get( `https://jsonplaceholder.typicode.com/users/${this.state.userId}`, options )
+			.then(res => {
+				console.log(res);
+				const user = res.data;
+				this.setState( { user } );
+			});
 	}
 
 	handleEdit(e, validateFun) {
@@ -18,11 +38,6 @@ export default class UserEdit extends React.Component {
 		this.setState(prevState => ({
 			user: { ...prevState.user, [e.target.name]: e.target.value }
 		}));
-		/** o in alternativa
-		let oldUser = this.state.user;
-		oldUser.[e.target.name] = e.target.value;
-		this.setState( { user: oldUser } );
-		 */		
 	}
 
 	handleSave(e) {
@@ -30,14 +45,19 @@ export default class UserEdit extends React.Component {
 		console.log(`Salvataggio utente : ${JSON.stringify(this.state.user)}`)
 		/* controllo validazioni input */
 		/* salvataggio utente */
-		this.props.onSaveUser(this.state.user);
+		axios
+			.post(`https://jsonplaceholder.typicode.com/users`, this.state.user)
+			.then(res => {
+				console.log(`UserAdd -> ${res.status} / ${JSON.stringify(res.data)}`);
+				this.props.history.push('/');
+			});
 	}
 
 	render() {
-		return (
-			<section>
-				<h1>Modifica utente</h1>
-				<Form onSubmit={this.handleSave}>
+		const user = this.state.user;
+		let contenuto = <div>sto caricando</div>;
+		if ( user ) {
+			contenuto = <Form onSubmit={this.handleSave}>
 					<Form.Group controlId="name">
 						<Form.Label>Name</Form.Label>
 						<Form.Control type="text" name="name" onChange={(e) => this.handleEdit(e, handleCommonValidateText)} value={this.state.user.name} />
@@ -52,9 +72,13 @@ export default class UserEdit extends React.Component {
 					</Form.Group>
 					<Button variant="primary" onClick={this.handleSave}>Salva</Button>
 				</Form>
+		}
+		return (
+			<section>
+				<h1>Modifica utente</h1>
+				{contenuto}
 				<br />
-				<Button onClick={() => this.props.onViewList()}
-					variant="success">Torna alla lista</Button>
+				<ButtonBackToList />
 			</section>
 		)
 	}

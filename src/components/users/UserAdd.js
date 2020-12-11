@@ -1,7 +1,9 @@
 import React from 'react';
+import axios from 'axios';
 import { Form, Button } from 'react-bootstrap';
 import { Formik } from 'formik';
 import { schemaUser } from '../common/UserSchema';
+import {ButtonBackToList} from './UserButton';
 
 class UserAdd extends React.Component {
 	render() {
@@ -13,7 +15,12 @@ class UserAdd extends React.Component {
 				 	validationSchema = {schemaUser}
                    	onSubmit = { (values, {setSubmitting}) => {
                         console.log('submit form');
-						this.props.onAddUser( values );
+								axios
+									.post(`https://jsonplaceholder.typicode.com/users`, values )
+									.then(res => {
+										console.log( `UserAdd -> ${res.status} / ${JSON.stringify(res.data)}` );
+										this.props.history.push( '/' );
+									});
                         setSubmitting(false);
                         /**/
                     } }
@@ -61,8 +68,7 @@ class UserAdd extends React.Component {
 					)}
 				</Formik>
 				<br/>
-				<Button onClick={() => this.props.onViewList()}
-					variant="success">Torna alla lista</Button>				
+				<ButtonBackToList/>			
 			</React.Fragment>
 		)
 	}

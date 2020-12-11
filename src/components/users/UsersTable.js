@@ -1,46 +1,27 @@
 import React from 'react';
-import {Button, Table} from 'react-bootstrap';
+import { Table, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 class UsersTable extends React.Component {
 	
-    viewUser(user) {
-        console.log( `UsersTable.viewUser -> ${JSON.stringify(user)}` );
-        this.props.onViewUser( user );
-    }
-
-    viewUserId( id ) {
-        console.log( `UsersTable.viewUserId -> ${id}` );
-        this.props.onViewUserId( id );
-    }
-
-    editUser(user) {
-        console.log( `UsersTable.viewEdit -> ${JSON.stringify(user)}` );
-        this.props.onEditUser( user );
-    }
-
-    addUser() {
-        console.log( `UsersTable.addUser` );
-        this.props.onAddUser();
-    }
-
+	constructor( props ) {
+		super( props );
+		this.state = { users: [] };
+	}
+	
+    componentDidMount(){
+        console.log('component did mount');
+        this.setState({ users: this.props.users });
+    }	
+	
     render(){
         const righe = (this.props.users.map((user)=>
             <tr key={user.id.toString()}>
                 <td>{user.id}</td>
                 <td>{user.name}</td>
                 <td>{user.username}</td>
-                <td><Button 
-                    variant="success" 
-                    onClick={ () => this.viewUser(user) }
-                    >Dettaglio</Button> </td>
-                <td><Button 
-                    variant="success" 
-                    onClick={ () => this.viewUserId(user.id) }
-                    >Vedi ID</Button> </td>
-                <td><Button 
-                    variant="warning" 
-                    onClick={ () => this.editUser(user) }
-                    >Modifica</Button> </td>
+                <td><Link to={`/view/${user.id}`}>Dettaglio</Link></td>
+				<td><Link to={`/edit/${user.id}`}>Modifica</Link></td>
             </tr>
         ));
         return (
@@ -52,12 +33,8 @@ class UsersTable extends React.Component {
                             <th>#</th>
                             <th>Name</th>
                             <th>Username</th>
-							<th colSpan="3">
-				               <Button 
-				                    variant="warning" 
-				                    onClick={ () => this.addUser() }
-				                    >Aggiugi Utente</Button>								
-							</th>
+							<th><Link to={`/add`}>Aggiugi Utente</Link></th>
+							<th><Button onClick={this.props.onRefresh}>Aggiorna</Button></th>
                         </tr>
                     </thead>
                     <tbody>
