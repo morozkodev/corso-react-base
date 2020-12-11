@@ -9,7 +9,7 @@ import UserEdit from './components/users/UserEdit';
 import UserAdd from './components/users/UserAdd';
 import PaginaErrore from './components/common/PaginaErrore';
 
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect, Link } from 'react-router-dom';
 
 class App extends React.Component {
 

@@ -1,4 +1,7 @@
 import React from 'react';
+
+import { ButtonBackToList } from './UserButton';
+
 class Login extends React.Component{
     constructor(props){
         super();
@@ -12,6 +15,8 @@ class Login extends React.Component{
             <section>
                 <h1>Login</h1>
                 <button onClick={this.auth}>Login</button>
+				<br/><br/>
+				<ButtonBackToList />
             </section>
         )
     }

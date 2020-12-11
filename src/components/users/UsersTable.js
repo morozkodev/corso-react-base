@@ -97,6 +97,7 @@ class UsersTable extends React.Component {
 		return (
             <section>
                 <h1>Tabella utenti fetch</h1>
+				<Link to={'/protected'}>Vai all'area riservata</Link>
                 { this.state.loading ? this.renderLoading() : this.renderDati() }
             </section>
 		)
