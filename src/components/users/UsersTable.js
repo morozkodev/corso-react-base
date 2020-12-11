@@ -53,35 +53,52 @@ class UsersTable extends React.Component {
 		}
 	}
 
+	renderError() {
+		return <label className="alert alert-danger">Si è verificato un errore</label>
+	}
+	renderLoading() {
+		return <div>Loading...</div>
+	}
+	renderDati() {
+		if (this.state.error) {
+			return this.renderError();
+		} else {
+			const righe = (this.state.users.map((user) =>
+				<tr key={user.id.toString()}>
+					<td>{user.id}</td>
+					<td>{user.name}</td>
+					<td>{user.username}</td>
+					<td><Link to={`/view/${user.id}`}>Vedi</Link> </td>
+					<td><Link to={`/edit/${user.id}`}>Edit</Link> </td>
+				</tr>
+			));
+			return (
+				<section>
+					<Table striped bordered hover>
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>Name</th>
+								<th>Username</th>
+								<th><Link to="/add">Add new</Link> </th>
+								<th colSpan="2"><Button onClick={this.refresh}>Refresh</Button> </th>
+							</tr>
+						</thead>
+						<tbody>
+							{righe}
+						</tbody>
+					</Table>
+				</section>
+			)
+		}
+	}
+
 	render() {
-		const righe = (this.state.users.map((user) =>
-			<tr key={user.id.toString()}>
-				<td>{user.id}</td>
-				<td>{user.name}</td>
-				<td>{user.username}</td>
-				<td><Link to={`/view/${user.id}`}>Dettaglio</Link></td>
-				<td><Link to={`/edit/${user.id}`}>Modifica</Link></td>
-				<td><Button variant="danger" onClick={() => this.cancellaUtente(user.id)}>Cancella</Button></td>
-			</tr>
-		));
 		return (
-			<section>
-				<h1>Lista utenti</h1>
-				<Table striped bordered hover>
-					<thead>
-						<tr>
-							<th>#</th>
-							<th>Name</th>
-							<th>Username</th>
-							<th colSpan="2"><Link to={`/add`}>Aggiugi Utente</Link></th>
-							<th><Button onClick={this.initUsers}>Aggiorna</Button></th>
-						</tr>
-					</thead>
-					<tbody>
-						{righe}
-					</tbody>
-				</Table>
-			</section>
+            <section>
+                <h1>Tabella utenti fetch</h1>
+                { this.state.loading ? this.renderLoading() : this.renderDati() }
+            </section>
 		)
 	}
 
